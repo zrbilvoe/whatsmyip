@@ -13,10 +13,12 @@ import (
     "net/http"
     "log"
     "strings"
+    "time"
 )
 
 var myip string
 
+time.Sleep(3 * time.Millisecond)
 func ipHandler(w http.ResponseWriter, r *http.Request) {
     ip, _, err := net.SplitHostPort(r.RemoteAddr)
     if err == nil {
