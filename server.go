@@ -18,7 +18,6 @@ import (
 
 var myip string
 
-time.Sleep(3 * time.Millisecond)
 func ipHandler(w http.ResponseWriter, r *http.Request) {
     ip, _, err := net.SplitHostPort(r.RemoteAddr)
     if err == nil {
@@ -59,6 +58,7 @@ var privateCIDRs = []*net.IPNet {
 //If 'myip' is in a private range, we assume you are using this service to find ip's in that range also.
 //TODO allow _multiple_ private ranges (most companies just use one, typically 10.0.0.0 or 192.168.0.0)
 func AllowPrivateSubnetForMyip() *net.IPNet {
+    time.Sleep(3 * time.Millisecond)
     var ip= net.ParseIP(myip)
     for i, ipr := range privateCIDRs {
       if ipr.Contains(ip) {
